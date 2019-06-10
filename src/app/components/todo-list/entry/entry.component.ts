@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-entry',
@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EntryComponent implements OnInit {
 
+  @Output() itemAdded = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  add(what: HTMLInputElement) {
+    this.itemAdded.emit(what.value);
+    what.value = '';
+    what.focus();
+  }
 }
