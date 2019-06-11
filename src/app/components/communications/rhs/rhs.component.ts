@@ -1,25 +1,20 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommunicationsService } from '../communications.service';
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-rhs',
   templateUrl: './rhs.component.html',
   styleUrls: ['./rhs.component.css']
 })
-export class RhsComponent implements OnInit, OnDestroy {
+export class RhsComponent implements OnInit {
   message = '';
-  message2: string;
-  subscription: Subscription;
+  message$: Observable<string>;
+
   constructor(private service: CommunicationsService) { }
 
   ngOnInit() {
-    this.subscription = this.service.getSubscription()
-      .subscribe(newMessage => this.message2 = newMessage);
-  }
-
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.message$ = this.service.getSubscription();
   }
 
   getIt() {
