@@ -1,5 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { TodoListItem } from './models';
+import { TodosDataService } from './todos-data.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-todo-list',
@@ -7,23 +9,28 @@ import { TodoListItem } from './models';
   styleUrls: ['./todo-list.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class TodoListComponent {
-  items: TodoListItem[] = [
-    { description: 'Mow Grass', completed: false },
-    { description: 'Clean Gutters', completed: false },
-    { description: 'Change Oil', completed: true }
-  ];
+export class TodoListComponent implements OnInit {
+
+  todos$: Observable<TodoListItem[]>;
+
+  constructor(private service: TodosDataService) {
+    service.getAll();
+  }
+
+  ngOnInit(): void {
+    this.todos$ = this.service.getAll();
+  }
 
   markComplete(item: TodoListItem) {
-    item.completed = true;
+
   }
 
   add(what: string) {
     const description = what;
-    this.items.unshift({ description, completed: false });
+
   }
 
   clearCompleted() {
-    this.items = this.items.filter(item => !item.completed);
+
   }
 }
