@@ -9,6 +9,8 @@ import { ListComponent } from './components/todo-list/list/list.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NavComponent } from './components/nav/nav.component';
 import { CommunicationsComponent } from './components/communications/communications.component';
+import { LhsComponent } from './components/communications/lhs/lhs.component';
+import { RhsComponent } from './components/communications/rhs/rhs.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { CommunicationsComponent } from './components/communications/communicati
     ListComponent,
     DashboardComponent,
     NavComponent,
-    CommunicationsComponent
+    CommunicationsComponent,
+    LhsComponent,
+    RhsComponent
   ],
   imports: [
     BrowserModule,
