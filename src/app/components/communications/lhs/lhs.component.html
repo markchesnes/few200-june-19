@@ -1,3 +1,9 @@
-<p>
-  lhs works!
-</p>
+<div class="form-group">
+  <input type="text"
+         class="form-control"
+         #what>
+  <input type="button"
+         (click)="setIt(what)"
+         class="btn btn-primary"
+         value="Set it">
+</div>
