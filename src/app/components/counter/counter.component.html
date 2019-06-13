@@ -1,8 +1,11 @@
 <input type="button"
        (click)="decrement()"
+       [disabled]="decrementDisabled$ | async"
        class="btn btn-sm btn-primary"
        value="-">
-<span style="color: red; font-weight:bold; font-size: 20px; padding: 0 10px">
+<span class="badge badge-pill"
+      ngClass="{badge-success: ((current$ | async) >= 0), badge-danger: ((current$ | async) < 0)}"
+      style="font-size: 20px;">
   {{current$ | async}}</span>
 <input type="button"
        (click)="increment()"
@@ -12,3 +15,21 @@
        (click)="reset()"
        class="btn btn-sm btn-dark"
        value="Reset">
+<div class="row">
+  <div class="btn-group"
+       role="group"
+       aria-label="Basic example">
+    <button type="button"
+            (click)="setCountBy(1)"
+            [disabled]="(by$ | async) === 1"
+            class="btn btn-secondary">1</button>
+    <button type="button"
+            (click)="setCountBy(3)"
+            [disabled]="(by$ | async) === 3"
+            class="btn btn-secondary">3</button>
+    <button type="button"
+            (click)="setCountBy(5)"
+            [disabled]="(by$ | async) === 5"
+            class="btn btn-secondary">5</button>
+  </div>
+</div>
