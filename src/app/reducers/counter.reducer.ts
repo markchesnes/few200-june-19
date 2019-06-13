@@ -7,7 +7,7 @@ export interface State {
 }
 
 const initialState: State = {
-  current: 42
+  current: 0
 };
 
 export function reducer(state: State = initialState, action: Action): State {
@@ -20,6 +20,11 @@ export function reducer(state: State = initialState, action: Action): State {
     case 'Decrement': {
       return {
         current: state.current - 1
+      };
+    }
+    case 'Reset': {
+      return {
+        current: 0
       };
     }
     default: {
