@@ -3,8 +3,7 @@
        [disabled]="decrementDisabled$ | async"
        class="btn btn-sm btn-primary"
        value="-">
-<span class="badge badge-pill"
-      ngClass="{badge-success: ((current$ | async) >= 0), badge-danger: ((current$ | async) < 0)}"
+<span class="badge badge-pill badge-light"
       style="font-size: 20px;">
   {{current$ | async}}</span>
 <input type="button"
